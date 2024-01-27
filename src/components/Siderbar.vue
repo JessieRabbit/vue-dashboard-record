@@ -1,74 +1,128 @@
+<!-- eslint-disable vuejs-accessibility/label-has-for -->
 <template>
-  <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
-    <div
-      class="offcanvas-md offcanvas-end bg-body-tertiary"
-      tabindex="-1"
-      id="sidebarMenu"
-      aria-labelledby="sidebarMenuLabel"
-    >
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="sidebarMenuLabel">Company name</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="offcanvas"
-          data-bs-target="#sidebarMenu"
-          aria-label="Close"
-        ></button>
+  <div id="sidebar">
+    <div class="sidebar-wrapper active">
+      <div class="sidebar-header position-relative">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="logo">
+            <a href="#">
+              <img src="@/assets/static/images/logo/favicon.svg" alt="Logo" srcset=""/></a>
+          </div>
+          <div class="theme-toggle d-flex gap-2 align-items-center mt-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              aria-hidden="true"
+              role="img"
+              class="iconify iconify--system-uicons"
+              width="20"
+              height="20"
+              preserveAspectRatio="xMidYMid meet"
+              viewBox="0 0 21 21"
+            >
+              <g
+                fill="none"
+                fill-rule="evenodd"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M10.5 14.5c2.219 0 4-1.763 4-3.982a4.003 4.003 0 0 0-4-4.018c-2.219
+                  0-4 1.781-4 4c0 2.219 1.781 4 4 4zM4.136 4.136L5.55 5.55m9.9 9.9l1.414
+                  1.414M1.5 10.5h2m14 0h2M4.135 16.863L5.55 15.45m9.899-9.9l1.414-1.415M10.5
+                  19.5v-2m0-14v-2"
+                  opacity=".3"
+                ></path>
+                <g transform="translate(-210 -1)">
+                  <path d="M220.5 2.5v2m6.5.5l-1.5 1.5"></path>
+                  <circle cx="220.5" cy="11.5" r="4"></circle>
+                  <path
+                    d="m214 5l1.5 1.5m5 14v-2m6.5-.5l-1.5-1.5M214 18l1.5-1.5m-4-5h2m14 0h2"
+                  ></path>
+                </g>
+              </g>
+            </svg>
+            <div class="form-check form-switch fs-6">
+              <input
+                class="form-check-input me-0"
+                type="checkbox"
+                id="toggle-dark"
+                style="cursor: pointer"
+              />
+              <label class="form-check-label"></label>
+            </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              aria-hidden="true"
+              role="img"
+              class="iconify iconify--mdi"
+              width="20"
+              height="20"
+              preserveAspectRatio="xMidYMid meet"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="m17.75 4.09l-2.53 1.94l.91 3.06l-2.63-1.81l-2.63
+                  1.81l.91-3.06l-2.53-1.94L12.44 4l1.06-3l1.06
+                  3l3.19.09m3.5 6.91l-1.64 1.25l.59 1.98l-1.7-1.17l-1.7
+                  1.17l.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95l2.06.05m-2.28
+                  4.95c.83-.08 1.72 1.1 1.19 1.85c-.32.45-.66.87-1.08 1.27C15.17
+                    23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14c.4-.4.82-.76
+                    1.27-1.08c.75-.53 1.93.36 1.85 1.19c-.27 2.86.69 5.83 2.89
+                      8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0
+                      1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82c-2.81 3.14-2.7 7.96.31
+                        10.98c3.02 3.01 7.84 3.12 10.98.31Z"
+              ></path>
+            </svg>
+          </div>
+          <div class="sidebar-toggler x">
+            <a href="#" class="sidebar-hide d-xl-none d-block" aria-label="Middle">
+              <i class="bi bi-x bi-middle"></i>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
-        <h6
-          class="sidebar-heading d-flex justify-content-between
-          align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase"
-        >
-          <span>管理員</span>
-          <a class="link-secondary" href="#" aria-label="Add a new report">
-            <svg class="bi"><use xlink:href="#plus-circle" /></svg>
-          </a>
-        </h6>
-        <ul class="nav flex-column mb-auto">
-          <li class="nav-item">
-            <router-link class="nav-link" to="/admin/products">
-              <i class="fas fa-box-open"></i>
-              產品列表
-            </router-link>
-            <router-link class="nav-link" to="/admin/orders">
-              <i class="fas fa-list"></i>
-              訂單列表
-            </router-link>
-            <router-link class="nav-link" to="/admin/ticket">
-              <i class="fas fa-ticket-alt"></i>
-              優惠券
+
+      <div class="sidebar-menu">
+        <ul class="menu">
+          <li class="sidebar-title">管理員</li>
+
+          <li class="sidebar-item active">
+            <router-link class="sidebar-link" to="/admin/products">
+              <i class="bi bi-box-seam-fill"></i>
+              <span>產品列表</span>
             </router-link>
           </li>
-        </ul>
-
-        <h6
-          class="sidebar-heading d-flex justify-content-between
-          align-items-center px-3 mt-4 mb-1 text-body-secondary text-uppercase"
-        >
-          <span>模擬功能</span>
-          <a class="link-secondary" href="#" aria-label="Add a new report">
-            <svg class="bi"><use xlink:href="#plus-circle" /></svg>
-          </a>
-        </h6>
-        <ul class="nav flex-column mb-auto">
-          <li class="nav-item">
-            <router-link class="nav-link" to="/customer_order">
-              <i class="fas fa-cart-plus"></i>
-              模擬訂單
+          <li class="sidebar-item">
+            <router-link class="sidebar-link" to="/admin/orders">
+              <i class="bi bi-card-list"></i>
+              <span>訂單列表</span>
             </router-link>
           </li>
-        </ul>
+          <li class="sidebar-item">
+            <router-link class="sidebar-link" to="/admin/ticket">
+              <i class="bi bi-ticket-fill"></i>
+              <span>優惠券</span>
+            </router-link>
+          </li>
 
-        <hr class="my-3" />
+          <li class="sidebar-title">模擬功能</li>
 
-        <ul class="nav flex-column mb-auto">
-          <li class="nav-item">
-            <a class="nav-link d-flex align-items-center gap-2" href="#"
-              @click.prevent="logout">
-              <i class="fas fa-door-closed"></i>
-                登出
+          <li class="sidebar-item">
+            <router-link class="sidebar-link" to="/customer_order">
+              <i class="bi bi-cart4"></i>
+              <span>模擬訂單</span>
+            </router-link>
+          </li>
+
+          <li class="sidebar-title">Authentication</li>
+          <li class="sidebar-item">
+            <a href="#" class="sidebar-link" @click.prevent="logout">
+              <i class="bi bi-door-closed-fill"></i>
+              <span>登出</span>
             </a>
           </li>
         </ul>

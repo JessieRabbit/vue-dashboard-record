@@ -15,6 +15,9 @@ import {
 import TW from 'vee-validate/dist/locale/zh_TW.json';
 import * as rules from 'vee-validate/dist/rules';
 
+import FlatPickr from 'vue-flatpickr-component';
+import 'flatpickr/dist/flatpickr.css';
+
 import App from './App.vue';
 import router from './router';
 import './bus';
@@ -40,6 +43,7 @@ configure({
 });
 // eslint-disable-next-line vue/multi-word-component-names
 Vue.component('Loading', Loading);
+Vue.component('FlatPickr', FlatPickr);
 Vue.filter('currency', currencyFilter);
 Vue.filter('date', dateFilter);
 

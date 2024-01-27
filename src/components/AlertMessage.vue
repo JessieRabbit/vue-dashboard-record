@@ -1,12 +1,13 @@
 <template>
-    <div class="message-alert">
-      <div class="alert alert-dismissible"
-        :class="'alert-' + item.status"
-        v-for="(item, i) in messages" :key="i">
+  <div class="message-alert">
+    <div class="alert alert-danger alert-dismissible show fade"
+      :class="'alert-' + item.status"
+      v-for="(item, i) in messages" :key="i">
         {{ item.message }}
-        <button type="button" class="btn-close" @click="removeMessage(i)" aria-label="Close">
-        </button>
-      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert"
+        aria-label="Close" @click="removeMessage(i)">
+      </button>
+    </div>
   </div>
 </template>
 
@@ -58,7 +59,7 @@ export default {
 <style scope>
 .message-alert {
   position: fixed;
-  max-width: 50%;
+  max-width: 100%;
   top: 56px;
   right: 20px;
   z-index: 1100;

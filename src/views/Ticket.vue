@@ -2,39 +2,51 @@
 <template>
   <div>
     <!-- loading start -->
-    <loading :active.sync="isLoading"/>
+    <div v-if="isLoading" class="spinner-loading is-active is-full-page">
+      <div class="loading-background"></div>
+      <img src="@/assets/static/images/svg-loaders/ball-triangle.svg"
+        class="loading-icon" alt="audio">
+    </div>
     <!-- loading end -->
-    <div class="text-end mt-4">
+    <div class="text-end my-4">
       <button class="btn btn-primary" @click="openTicketModal(true)">建立新的優惠券</button>
     </div>
-    <table class="table mt-4 border-top">
-      <thead>
-        <tr>
-          <th>名稱</th>
-          <th>折扣百分比</th>
-          <th>到期日</th>
-          <th>是否啟用</th>
-          <th>編輯</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(item) in tickets" :key="item.id">
-          <td>{{ item.title }}</td>
-          <td>{{ item.percent }}%</td>
-          <td>{{ item.due_date | date }}</td>
-          <td>
-            <span class="text-success" v-if="item.is_enabled">啟用</span>
-            <span v-else>未啟用</span>
-          </td>
-          <td class="d-flex justify-content-between">
-            <button class="btn btn-outline-primary btn-sm"
-              @click="openTicketModal(false, item)">
-              編輯
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <table class="table table-hover mb-0">
+            <thead>
+              <tr>
+                <th>名稱</th>
+                <th>折扣百分比</th>
+                <th>到期日</th>
+                <th>是否啟用</th>
+                <th>編輯</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(item) in tickets" :key="item.id">
+                <td>{{ item.title }}</td>
+                <td>{{ item.percent }}%</td>
+                <td>{{ item.due_date }}</td>
+                <td>
+                  <span class="text-success fw-bolder" v-if="item.is_enabled">啟用</span>
+                  <span v-else>未啟用</span>
+                </td>
+                <td class="d-flex justify-content-between">
+                  <button class="btn btn-outline-primary btn-sm"
+                    @click="openTicketModal(false, item)">
+                    編輯
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
     <!-- Page -->
     <Pagination :pagination="pagination" @pageEvent="(page) => getTickets(page)"/>
     <!-- Modal -->
@@ -42,9 +54,9 @@
       aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content border-0">
-          <div class="modal-header bg-dark text-white">
+          <div class="modal-header bg-primary text-white">
             <h5 class="modal-title" id="exampleModalLabel">
-              <span>新增優惠券</span>
+              <span class="white">新增優惠券</span>
             </h5>
             <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
               @click="hideTicketModal">
@@ -63,8 +75,11 @@
             </div>
             <div class="form-group mb-3">
               <label for="due_date">到期日</label>
-              <input type="date" class="form-control" id="due_date"
-                placeholder="請輸入到期日" v-model="due_date">
+              <FlatPickr
+                v-model="tempTicket.due_date"
+                class="form-control"
+                placeholder="請輸入到期日"
+                name="date"/>
             </div>
             <div class="form-group mb-3">
               <label for="percent">折扣百分比</label>
@@ -106,6 +121,7 @@
 <script>
 import { Modal } from 'bootstrap';
 import Pagination from '@/components/Pagination.vue';
+// import { ref } from 'vue';
 
 export default {
   name: 'TicketView',

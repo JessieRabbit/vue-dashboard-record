@@ -2,44 +2,56 @@
 <template>
   <div>
     <!-- loading start -->
-    <loading :active.sync="isLoading"/>
+    <div v-if="isLoading" class="spinner-loading is-active is-full-page">
+      <div class="loading-background"></div>
+      <img src="@/assets/static/images/svg-loaders/ball-triangle.svg"
+        class="loading-icon" alt="audio">
+    </div>
     <!-- loading end -->
-    <div class="text-end mt-4">
+    <div class="text-end my-4">
       <button class="btn btn-primary" @click="openModal(true)">建立新的產品</button>
     </div>
-    <table class="table mt-4 border-top">
-      <thead>
-        <tr>
-          <th width="120">分類</th>
-          <th>產品名稱</th>
-          <th width="120">原價</th>
-          <th width="120">售價</th>
-          <th width="100">是否啟用</th>
-          <th width="120" class="text-center">編輯</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(item) in products" :key="item.id">
-          <td>{{ item.category }}</td>
-          <td>{{ item.title }}</td>
-          <td class="text-end">{{ item.origin_price | currency }}</td>
-          <td class="text-end">{{ item.price | currency }}</td>
-          <td>
-            <span class="text-success" v-if="item.is_enabled">啟用</span>
-            <span v-else>未啟用</span>
-          </td>
-          <td class="d-flex justify-content-between">
-            <button class="btn btn-outline-primary btn-sm"
-              @click="openModal(false, item)">
-              編輯
-            </button>
-            <button class="btn btn-danger btn-sm" @click="openDeleteModal(item)">
-              刪除
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <table class="table table-hover mb-0">
+            <thead>
+              <tr>
+                <th>分類</th>
+                <th>產品名稱</th>
+                <th>原價</th>
+                <th>售價</th>
+                <th>是否啟用</th>
+                <th class="text-center">編輯</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(item) in products" :key="item.id">
+                <td class="text-bold-500">{{ item.category }}</td>
+                <td>{{ item.title }}</td>
+                <td class="text-end text-bold-500">{{ item.origin_price | currency }}</td>
+                <td class="text-end">{{ item.price | currency }}</td>
+                <td>
+                  <span class="text-success fw-bolder" v-if="item.is_enabled">啟用</span>
+                  <span v-else>未啟用</span>
+                </td>
+                <td class="d-flex justify-content-center">
+                  <button class="btn btn-outline-primary btn-sm me-4"
+                    @click="openModal(false, item)">
+                    編輯
+                  </button>
+                  <button class="btn btn-danger btn-sm" @click="openDeleteModal(item)">
+                    刪除
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
     <!-- Page -->
     <Pagination :pagination="pagination" @pageEvent="(page) => getProducts(page)"/>
     <!-- Modal -->
@@ -47,9 +59,9 @@
       aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content border-0">
-          <div class="modal-header bg-dark text-white">
+          <div class="modal-header bg-primary text-white">
             <h5 class="modal-title" id="exampleModalLabel">
-              <span>新增產品</span>
+              <span class="white">新增產品</span>
             </h5>
             <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
               @click="hideModal('productModal')">
@@ -150,7 +162,7 @@
         <div class="modal-content border-0">
           <div class="modal-header bg-danger text-white">
             <h5 class="modal-title" id="exampleModalLabel">
-              <span>刪除產品</span>
+              <span class="white">刪除產品</span>
             </h5>
             <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
               @click="hideModal('delProductModal')"></button>

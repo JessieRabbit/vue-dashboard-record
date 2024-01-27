@@ -1,29 +1,39 @@
 <template>
   <div class="my-5 row justify-content-center">
     <!-- loading start -->
-    <loading :active.sync="isLoading"/>
+    <div v-if="isLoading" class="spinner-loading is-active is-full-page">
+      <div class="loading-background"></div>
+      <img src="@/assets/static/images/svg-loaders/ball-triangle.svg"
+        class="loading-icon" alt="audio">
+    </div>
     <!-- loading end -->
     <form class="col-md-6" @submit.prevent="payOrder">
-      <table class="table">
-        <thead>
-          <th class="text-start">品名</th>
-          <th class="text-center">數量</th>
-          <th class="text-center">單價</th>
-        </thead>
-        <tbody>
-          <tr v-for="item in order.products" :key="item.id">
-            <td class="align-middle text-start">{{ item.product.title }}</td>
-            <td class="align-middle text-center">{{ item.qty }}/{{ item.product.unit }}</td>
-            <td class="align-middle text-end">{{ item.final_total }}</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="2" class="text-end">總計</td>
-            <td class="text-end">{{ order.total }}</td>
-          </tr>
-        </tfoot>
-      </table>
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <table class="table table-striped mb-0">
+              <thead>
+                <th class="text-start ps-2">品名</th>
+                <th class="text-center">數量</th>
+                <th class="text-center">單價</th>
+              </thead>
+              <tbody>
+                <tr v-for="item in order.products" :key="item.id">
+                  <td class="align-middle text-start">{{ item.product.title }}</td>
+                  <td class="align-middle text-center">{{ item.qty }}/{{ item.product.unit }}</td>
+                  <td class="align-middle text-end">{{ item.final_total }}</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="2" class="text-end">總計</td>
+                  <td class="text-end">{{ order.total }}</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
 
       <table class="table">
         <tbody>
@@ -47,7 +57,7 @@
             <th>付款狀態</th>
             <td>
               <span v-if="!order.is_paid">尚未付款</span>
-              <span v-else class="text-success">付款完成</span>
+              <span v-else class="text-success fw-bolder">付款完成</span>
             </td>
           </tr>
         </tbody>
