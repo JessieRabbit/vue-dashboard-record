@@ -15,39 +15,41 @@
     <div class="row">
       <div class="col-12">
         <div class="card">
-          <table class="table table-hover mb-0">
-            <thead>
-              <tr>
-                <th>分類</th>
-                <th>產品名稱</th>
-                <th>原價</th>
-                <th>售價</th>
-                <th>是否啟用</th>
-                <th class="text-center">編輯</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(item) in products" :key="item.id">
-                <td class="text-bold-500">{{ item.category }}</td>
-                <td>{{ item.title }}</td>
-                <td class="text-end text-bold-500">{{ item.origin_price | currency }}</td>
-                <td class="text-end">{{ item.price | currency }}</td>
-                <td>
-                  <span class="text-success fw-bolder" v-if="item.is_enabled">啟用</span>
-                  <span v-else>未啟用</span>
-                </td>
-                <td class="d-flex justify-content-center">
-                  <button class="btn btn-outline-primary btn-sm me-4"
-                    @click="openModal(false, item)">
-                    編輯
-                  </button>
-                  <button class="btn btn-danger btn-sm" @click="openDeleteModal(item)">
-                    刪除
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead>
+                <tr>
+                  <th>分類</th>
+                  <th>產品名稱</th>
+                  <th>原價</th>
+                  <th>售價</th>
+                  <th>是否啟用</th>
+                  <th class="text-center">編輯</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(item) in products" :key="item.id">
+                  <td class="text-bold-500">{{ item.category }}</td>
+                  <td>{{ item.title }}</td>
+                  <td class="text-end text-bold-500">{{ item.origin_price | currency }}</td>
+                  <td class="text-end">{{ item.price | currency }}</td>
+                  <td>
+                    <span class="text-success fw-bolder" v-if="item.is_enabled">啟用</span>
+                    <span v-else>未啟用</span>
+                  </td>
+                  <td class="text-center">
+                    <button class="btn btn-outline-primary btn-sm me-4"
+                      @click="openModal(false, item)">
+                      編輯
+                    </button>
+                    <button class="btn btn-danger btn-sm" @click="openDeleteModal(item)">
+                      刪除
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

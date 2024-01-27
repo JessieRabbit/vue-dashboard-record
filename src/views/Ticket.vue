@@ -15,34 +15,36 @@
     <div class="row">
       <div class="col-12">
         <div class="card">
-          <table class="table table-hover mb-0">
-            <thead>
-              <tr>
-                <th>名稱</th>
-                <th>折扣百分比</th>
-                <th>到期日</th>
-                <th>是否啟用</th>
-                <th>編輯</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(item) in tickets" :key="item.id">
-                <td>{{ item.title }}</td>
-                <td>{{ item.percent }}%</td>
-                <td>{{ item.due_date }}</td>
-                <td>
-                  <span class="text-success fw-bolder" v-if="item.is_enabled">啟用</span>
-                  <span v-else>未啟用</span>
-                </td>
-                <td class="d-flex justify-content-between">
-                  <button class="btn btn-outline-primary btn-sm"
-                    @click="openTicketModal(false, item)">
-                    編輯
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead>
+                <tr>
+                  <th>名稱</th>
+                  <th>折扣百分比</th>
+                  <th>到期日</th>
+                  <th>是否啟用</th>
+                  <th>編輯</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(item) in tickets" :key="item.id">
+                  <td>{{ item.title }}</td>
+                  <td>{{ item.percent }}%</td>
+                  <td>{{ item.due_date }}</td>
+                  <td>
+                    <span class="text-success fw-bolder" v-if="item.is_enabled">啟用</span>
+                    <span v-else>未啟用</span>
+                  </td>
+                  <td class="d-flex justify-content-between">
+                    <button class="btn btn-outline-primary btn-sm"
+                      @click="openTicketModal(false, item)">
+                      編輯
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

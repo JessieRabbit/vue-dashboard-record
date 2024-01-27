@@ -51,42 +51,44 @@
         <div class="row">
           <div class="col-12">
             <div class="card">
-              <table class="table table-hover mb-0">
-                <thead>
-                  <th></th>
-                  <th>品名</th>
-                  <th>數量</th>
-                  <th width="120">單價</th>
-                </thead>
-                <tbody>
-                  <tr v-for="item in cart.carts" :key="item.id" >
-                    <td class="align-middle">
-                      <button type="button" class="btn btn-outline-danger btn-sm"
-                        @click="removeCartItem(item.id)">
-                        <i class="bi bi-trash-fill"></i>
-                      </button>
-                    </td>
-                    <td class="align-middle">
-                      {{ item.product.title }}
-                      <div class="text-success" v-if="item.coupon">
-                        已套用優惠券
-                      </div>
-                    </td>
-                    <td class="align-middle">{{ item.qty }}/{{ item.product.unit }}</td>
-                    <td class="align-middle text-end">{{ item.final_total | currency }}</td>
-                  </tr>
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td colspan="3" class="text-end">總計</td>
-                    <td class="text-end">{{ cart.total | currency }}</td>
-                  </tr>
-                  <tr v-if="cart.final_total !== cart.total">
-                    <td colspan="3" class="text-end text-success">折扣價</td>
-                    <td class="text-success text-end">{{ cart.final_total | currency }}</td>
-                  </tr>
-                </tfoot>
-              </table>
+              <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                  <thead>
+                    <th></th>
+                    <th>品名</th>
+                    <th>數量</th>
+                    <th width="120">單價</th>
+                  </thead>
+                  <tbody>
+                    <tr v-for="item in cart.carts" :key="item.id" >
+                      <td class="align-middle">
+                        <button type="button" class="btn btn-outline-danger btn-sm"
+                          @click="removeCartItem(item.id)">
+                          <i class="bi bi-trash-fill"></i>
+                        </button>
+                      </td>
+                      <td class="align-middle">
+                        {{ item.product.title }}
+                        <div class="text-success" v-if="item.coupon">
+                          已套用優惠券
+                        </div>
+                      </td>
+                      <td class="align-middle">{{ item.qty }}/{{ item.product.unit }}</td>
+                      <td class="align-middle text-end">{{ item.final_total | currency }}</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="3" class="text-end">總計</td>
+                      <td class="text-end">{{ cart.total | currency }}</td>
+                    </tr>
+                    <tr v-if="cart.final_total !== cart.total">
+                      <td colspan="3" class="text-end text-success">折扣價</td>
+                      <td class="text-success text-end">{{ cart.final_total | currency }}</td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
             </div>
           </div>
         </div>
