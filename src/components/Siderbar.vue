@@ -4,9 +4,8 @@
     <div class="sidebar-wrapper active">
       <div class="sidebar-header position-relative">
         <div class="d-flex justify-content-between align-items-center">
-          <div class="logo">
-            <a href="#">
-              <img src="@/assets/static/images/logo/favicon.svg" alt="Logo" srcset=""/></a>
+          <div class="avatar avatar-xl me-3">
+            <img src="@/assets/static/images/faces/3.jpg" alt="" srcset="" style="height: 60px">
           </div>
           <div class="theme-toggle d-flex gap-2 align-items-center mt-2">
             <svg
@@ -90,19 +89,23 @@
         <ul class="menu">
           <li class="sidebar-title">管理員</li>
 
-          <li class="sidebar-item active">
+          <!-- active 參考: https://stackoverflow.com/questions/48575674/how-to-add-a-keyboard-listener-to-my-onclick-handler -->
+          <li class="sidebar-item" @click="active = 'products'" @keydown="active = 'products'"
+            :class="{ active: active === 'products' }">
             <router-link class="sidebar-link" to="/admin/products">
               <i class="bi bi-box-seam-fill"></i>
               <span>產品列表</span>
             </router-link>
           </li>
-          <li class="sidebar-item">
+          <li class="sidebar-item" @click="active = 'orders'" @keydown="active = 'orders'"
+            :class="{ active: active === 'orders' }">
             <router-link class="sidebar-link" to="/admin/orders">
               <i class="bi bi-card-list"></i>
               <span>訂單列表</span>
             </router-link>
           </li>
-          <li class="sidebar-item">
+          <li class="sidebar-item" @click="active = 'ticket'" @keydown="active = 'ticket'"
+            :class="{ active: active === 'ticket' }">
             <router-link class="sidebar-link" to="/admin/ticket">
               <i class="bi bi-ticket-fill"></i>
               <span>優惠券</span>
@@ -111,7 +114,9 @@
 
           <li class="sidebar-title">模擬功能</li>
 
-          <li class="sidebar-item">
+          <li class="sidebar-item" @click="active = 'customer_order'"
+            @keydown="active = 'customer_order'"
+            :class="{ active: active === 'customer_order' }">
             <router-link class="sidebar-link" to="/customer_order">
               <i class="bi bi-cart4"></i>
               <span>模擬訂單</span>
@@ -119,7 +124,8 @@
           </li>
 
           <li class="sidebar-title">Authentication</li>
-          <li class="sidebar-item">
+          <li class="sidebar-item" @click="active = 'logout'" @keydown="active = 'logout'"
+            :class="{ active: active === 'logout' }">
             <a href="#" class="sidebar-link" @click.prevent="logout">
               <i class="bi bi-door-closed-fill"></i>
               <span>登出</span>
@@ -134,6 +140,11 @@
 <script>
 export default {
   name: 'SiderbarView',
+  data() {
+    return {
+      active: 'products',
+    };
+  },
   methods: {
     logout() {
       const api = `${process.env.VUE_APP_API_PATH}/logout`;
