@@ -104,13 +104,13 @@
     </div>
     <div class="my-5 row justify-content-center" v-if="cart.carts && cart.carts.length">
       <validation-observer class="col-md-6" v-slot="{ invalid }">
-        <form @submit.prevent="crateOrder">
+        <form @submit.prevent="createOrder">
           <validation-provider rules="required|email" v-slot="{ errors, classes }">
             <div class="form-group">
                <!-- 輸入框 -->
               <label for="email">Email</label>
               <input id="email" type="email" name="email" v-model="form.user.email"
-                  class="form-control" :class="classes" placeholder="輸入email">
+                  class="form-control" :class="classes" placeholder="輸入email"/>
               <!-- 錯誤訊息 -->
               <span class="invalid-feedback">{{ errors[0] }}</span>
             </div>
@@ -121,7 +121,7 @@
               <label for="username">收件人姓名</label>
               <input type="text" class="form-control" name="name" id="username"
                 :class="classes"
-                v-model="form.user.name" placeholder="輸入姓名">
+                v-model="form.user.name" placeholder="輸入姓名"/>
               <span class="invalid-feedback">{{ errors[0] }}</span>
             </div>
           </validation-provider>
@@ -131,7 +131,7 @@
               <label for="usertel">收件人電話</label>
               <input type="tel" class="form-control" name="tel" id="usertel"
                 :class="classes"
-                v-model="form.user.tel" placeholder="請輸入電話">
+                v-model="form.user.tel" placeholder="請輸入電話"/>
               <span class="invalid-feedback">
                 {{ errors[0] }}
               </span>
@@ -144,7 +144,7 @@
               <input type="text" class="form-control" name="address" id="useraddress"
                 :class="classes"
                 v-model="form.user.address"
-                placeholder="請輸入地址">
+                placeholder="請輸入地址"/>
               <span class="invalid-feedback">{{ errors[0] }}</span>
             </div>
           </validation-provider>
@@ -155,7 +155,7 @@
               v-model="form.message"></textarea>
           </div>
           <div class="text-end mt-3">
-            <button class="btn btn-danger" :disabled="invalid">送出訂單</button>
+            <button type="submit" class="btn btn-danger" :disabled="invalid">送出訂單</button>
           </div>
         </form>
       </validation-observer>
@@ -305,7 +305,7 @@ export default {
         vm.isLoading = false;
       });
     },
-    crateOrder() {
+    createOrder() {
       const api = `${process.env.VUE_APP_API_PATH}/api/${process.env.VUE_APP_CUSTOM_PATH}/order`;
       const vm = this;
       const order = vm.form;

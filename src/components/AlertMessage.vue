@@ -1,6 +1,6 @@
 <template>
   <div class="message-alert">
-    <div class="alert alert-danger alert-dismissible show fade"
+    <div class="alert alert-dismissible show fade"
       :class="'alert-' + item.status"
       v-for="(item, i) in messages" :key="i">
         {{ item.message }}
