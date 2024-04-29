@@ -17,6 +17,7 @@
                 class="form-control form-control-xl"
                 placeholder="name@example.com"
                 v-model="user.username"
+                name="username"
               />
               <div class="form-control-icon">
                 <i class="bi bi-person"></i>
@@ -33,12 +34,13 @@
                 <i class="bi bi-shield-lock"></i>
               </div>
             </div>
-            <div class="form-check form-check-lg d-flex align-items-end">
+            <!-- 保留 -->
+            <!-- <div class="form-check form-check-lg d-flex align-items-end">
               <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckDefault" />
               <label class="form-check-label text-gray-600" for="flexCheckDefault">
                 Keep me logged in
               </label>
-            </div>
+            </div> -->
             <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Log in</button>
           </form>
         </div>
