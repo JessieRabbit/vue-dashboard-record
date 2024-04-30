@@ -5,7 +5,6 @@
 | ----------- | -----------       |  -----------        | ------        |
 | `2.x`       | `5.x`             | `3.x`               | `3.x`         |
                                       
-
 ## Project setup
 ```sh
 yarn install
@@ -24,6 +23,11 @@ yarn build
 ### Lints and fixes files
 ```sh
 yarn lint
+```
+
+### deploy Github pages
+```sh
+yarn deploy
 ```
 
 ### Customize configuration

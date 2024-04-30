@@ -23,6 +23,7 @@ import router from './router';
 import './bus';
 import './assets/static/js/initTheme';
 import './assets/static/js/components/dark';
+import './assets/static/js/components/sidebar';
 import currencyFilter from './filters/currency';
 import dateFilter from './filters/date';
 
