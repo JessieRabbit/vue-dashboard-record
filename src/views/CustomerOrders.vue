@@ -18,7 +18,7 @@
           <div class="card-body">
             <div class="d-flex justify-content-between">
               <h5 class="card-title">
-                <a href="#" class="text-dark text-decoration-none">{{ item.title }}</a>
+                {{ item.title }}
               </h5>
               <h5><span class="badge bg-secondary ml-2">{{ item.category }}</span></h5>
             </div>
